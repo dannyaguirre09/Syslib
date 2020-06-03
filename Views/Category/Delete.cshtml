@@ -1,0 +1,25 @@
+﻿@model SysLibrary.Models.category
+
+@{
+	ViewBag.Title = "Delete";
+}
+
+<div class="row p-4">
+	<divc class="col-md-1"></divc>
+	<div class="col-md-10">
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+			<h1 class="h3 mb-0 text-gray-800">Are you sure you want to delete @Model.NameCategory?</h1>
+		</div>
+		@using (Html.BeginForm("Delete", "Category", FormMethod.Post))
+		{
+			@Html.HiddenFor(d => d.IdCategory)
+			@Html.HiddenFor(d => d.NameCategory)
+			@Html.HiddenFor(d => d.DescriptionCategory)
+			<div style="text-align:right" class="mt-4">
+				<a href="~/category" class="btn btn-secondary text-white">Cancel </a>
+				<input value="Delete" class="btn btn-danger" type="submit" />
+			</div>
+		}
+	</div>
+</div>
+

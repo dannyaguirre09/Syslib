@@ -1,0 +1,48 @@
+﻿@model SysLibrary.Models.book
+
+@{
+	ViewBag.Title = "Edit";
+}
+
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+			<h1 class="h3 mb-0 text-gray-800">Edit Book</h1>
+		</div>
+
+		@using (Html.BeginForm("Edit", "Book", FormMethod.Post))
+		{
+			@Html.HiddenFor(d => d.IdBook)
+			@Html.HiddenFor(d => d.IsActive)
+			@Html.AntiForgeryToken()
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			<div>
+				@Html.LabelFor(d => d.NameBook)
+				@Html.TextBoxFor(d => d.NameBook, "", new { @class = "form-control border-left-primary" })
+				@Html.ValidationMessageFor(d => d.NameBook, "", new { @class = "text-danger" })
+			</div><br />
+			<div>
+				@Html.LabelFor(d => d.DescriptionBook)
+				@Html.TextAreaFor(d => d.DescriptionBook, new { @class = "form-control border-left-primary" })
+			</div><br />
+			<div>
+				@Html.LabelFor(d => d.PublicationDateBook) <br />
+				@Html.EditorFor(model => model.PublicationDateBook, new { htmlAttributes = new { @class = "form-control border-left-primary" } })
+				@Html.ValidationMessageFor(d => d.PublicationDateBook, "", new { @class = "text-danger" })
+			</div><br />
+			<div>
+				@Html.LabelFor(model => model.IdCategory, new { @class = "control-label" })
+				@Html.DropDownList("IdCategory", null, htmlAttributes: new { @class = "form-control" })
+				@Html.ValidationMessageFor(model => model.IdCategory, "", new { @class = "text-danger" })
+			</div>
+
+			<div style="text-align:right" class="mt-4">
+				<a href="~/book" class="btn btn-secondary text-white">Cancel </a>
+				<input value="Save" class="btn btn-primary" type="submit" />
+			</div>
+		}
+
+	</div>
+</div>
+

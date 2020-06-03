@@ -1,0 +1,78 @@
+﻿@model SysLibrary.Models.book
+
+@{
+    ViewBag.Title = "Book";
+}
+
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 mt-3">
+
+		<div>@Html.Partial("~/Views/Shared/_Flash.cshtml")</div>
+
+		<div class="d-sm-flex align-items-center justify-content-between mb-5">
+			<h1 class="h3 mb-0 text-gray-800">Books</h1>
+		</div>
+
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+			<a href="~/Book/Add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add New Book</a>
+
+			@using (Html.BeginForm("Index", "Book", FormMethod.Get))
+			{
+				<div class="input-group col-md-12">
+					@Html.TextBoxFor(d => d.NameBook, "", new { @class = "form-control border-left-primary  border-0 small", @placeholder = "Search..." })
+					<div class="input-group-append">
+						<button class="btn btn-primary text-white">
+							<i class="fas fa-search fa-sm"></i>
+						</button>
+					</div>
+				</div>
+			}
+		</div>
+
+		<table class="table">
+			<tr>
+				<th>Book Name</th>
+				<th>Book Description</th>
+				<th>Category</th>
+				<th>Publication Date</th>
+				<th class="text-center">Actions</th>
+			</tr>
+
+
+			@if (ViewBag.count == 0)
+			{
+				<tr>
+					<td>There are not items</td>
+				</tr>
+			}
+			else
+			{
+				foreach (var item in ViewBag.list)
+				{
+					<tr>
+						<td>@item.NameBook</td>
+						<td>@item.DescriptionBook</td>
+						<td>@item.category.NameCategory</td>
+						<td>@item.PublicationDateBook</td>
+						<td>
+							<div class="row">
+								<div class="col-md-6">
+									<a class="btn btn-primary btn-block" href="~/Book/Edit/@item.IdBook">Edit</a>
+								</div>
+								<div class="col-md-6">
+									<a class="btn btn-danger btn-block" href="~/Book/Delete/@item.IdBook">Delete</a>
+								</div>
+							</div>
+						</td>
+					</tr>
+				}
+
+			}
+
+
+		</table>
+
+	</div>
+</div>
+

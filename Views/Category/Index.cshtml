@@ -1,0 +1,68 @@
+﻿@model SysLibrary.Models.category
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 mt-3">
+
+
+		<div>
+			@Html.Partial("~/Views/Shared/_Flash.cshtml")
+		</div>
+
+		<div class="d-sm-flex align-items-center justify-content-between mb-5">
+			<h1 class="h3 mb-0 text-gray-800">Categories</h1>
+		</div>
+
+		
+
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+			<a href="~/Category/Add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add New Category</a>
+
+			@using (Html.BeginForm("Index", "Category", FormMethod.Get))
+			{
+				<div class="input-group col-md-12">
+					@Html.TextBoxFor(d => d.NameCategory, "", new { @class = "form-control border-left-primary  border-0 small", @placeholder = "Search..." })
+					<div class="input-group-append">
+						<button class="btn btn-primary text-white">
+							<i class="fas fa-search fa-sm"></i>
+						</button>
+					</div>
+				</div>
+			}
+
+		</div>
+
+
+		<table class="table ">
+			<tr>
+				<th>Category Name</th>
+				<th>Category Description</th>
+				<th class="text-center">Actions</th>
+			</tr>
+			@foreach (var item in ViewBag.list)
+			{
+				<tr>
+					<td>@item.NameCategory</td>
+					<td>@item.DescriptionCategory</td>
+					<td>
+						<div class="row">
+							<div class="col-md-6">
+								<a class="btn btn-primary btn-block" href="~/Category/Edit/@item.IdCategory">Edit</a>
+							</div>
+							<div class="col-md-6">
+								<a class="btn btn-danger btn-block" href="~/Category/Delete/@item.IdCategory">Delete</a>
+							</div>
+						</div>
+					</td>
+				</tr>
+			}
+		</table>
+	</div>
+</div>
+
+
+

@@ -1,0 +1,35 @@
+﻿@model SysLibrary.Models.category
+
+@{
+	ViewBag.Title = "Edit";
+}
+
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+			<h1 class="h3 mb-0 text-gray-800">Edit Category</h1>
+		</div>
+
+		@using (Html.BeginForm("Edit", "Category", FormMethod.Post))
+		{
+			@Html.HiddenFor(d => d.IdCategory)
+			@Html.HiddenFor(d => d.IsActive)
+			<div>
+				@Html.LabelFor(d => d.NameCategory)
+				@Html.TextBoxFor(d => d.NameCategory, "", new { @class = "form-control border-left-primary" })
+				@Html.ValidationMessageFor(d => d.NameCategory, null, new { @class = "alert-danger" })
+			</div>
+			<div class="mt-4">
+				@Html.LabelFor(d => d.DescriptionCategory)
+				@Html.TextAreaFor(d => d.DescriptionCategory, new { @class = "form-control border-left-primary" })
+			</div>
+
+			<div style="text-align:right" class="mt-4">
+				<a href="~/category" class="btn btn-secondary text-white">Cancel </a>
+				<input value="Edit" class="btn btn-primary" type="submit" />
+			</div>
+		}
+
+	</div>
+</div>

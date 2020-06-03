@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SysLibrary.Models.book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NameBook)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionBook)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublicationDateBook)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.category.NameCategory)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameBook)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriptionBook)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PublicationDateBook)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.category.NameCategory)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdBook }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdBook }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdBook })
+        </td>
+    </tr>
+}
+
+</table>
